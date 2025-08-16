@@ -9,19 +9,28 @@ import Freelances from './pages/Freelances';
 import Results from './pages/Results';
 import Header from './components/Header';
 import Error from './components/Error';
+import { ThemeProvider, SurveyProvider } from './utils/context';
+import Footer from './components/Footer';
+import GlobalStyle from './utils/style/GlobalStyle';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-       <Header />
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/survey/:questionNumber' element={<Survey/>}  />
-        <Route path='/freelances' element={<Freelances/>} />
-        <Route path='/results' element={<Results/>} />
-        <Route path='*' element={<Error/>} />
-      </Routes>
+      <ThemeProvider>
+        <SurveyProvider>
+          <GlobalStyle/>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home/>} />
+            <Route path='/survey/:questionNumber' element={<Survey/>}  />
+            <Route path='/freelances' element={<Freelances/>} />
+            <Route path='/results' element={<Results/>} />
+            <Route path='*' element={<Error/>} />
+          </Routes>
+          <Footer/>
+        </SurveyProvider>
+      </ThemeProvider>
     </Router>
   </React.StrictMode>
 );
